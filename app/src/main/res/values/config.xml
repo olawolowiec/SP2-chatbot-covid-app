@@ -16,21 +16,21 @@
 
     <!--Watson Speech To Text(STT) service credentials-->
     <!-- REPLACE `STT_API_KEY_HERE` with Watson Speech to Text service API Key-->
-    <string name="STT_apikey">U5Nka7UiNQz3QlT7eisq4FgSniIKaK609SLWWmlJwIjw</string>
+    <string name="STT_apikey">v0KVUmUI6tUTxFkchGDcQH6RfRx_tvIaBKec2bRG21Sp</string>
     
     <!-- The URL provided below is for DALLAS region/location -->
     <!-- If the STT service is created in another region/lpcation -->
     <!-- REPLACE the URL with STT URL provided in the service credentials -->
-    <string name="STT_url">https://api.au-syd.speech-to-text.watson.cloud.ibm.com/instances/b11d2b56-d4ce-45df-a447-9df581dd38d6</string>
+    <string name="STT_url">https://api.eu-gb.speech-to-text.watson.cloud.ibm.com/instances/65706489-76a8-43e7-97e5-abc338884c9a</string>
 
 
     <!--Watson Text To Speech(TTS) service credentials-->
     <!-- REPLACE `TTS_API_KEY_HERE` with Watson Text to Speech service API Key-->
-    <string name="TTS_apikey">s0u8icsxeE0MaLy-m85xd5plQGtiI31RJ2nf3shw-iMl</string>
+    <string name="TTS_apikey">0cspzgsqBmkwrPKVdR6E18cVwDviyEJ-XJJ61SFGLYzv</string>
     
     <!-- The URL provided below is for DALLAS region/location -->
     <!-- If the TTS service is created in another region/lpcation -->
     <!-- REPLACE the URL with TTS URL provided in the service credentials -->
-    <string name="TTS_url">https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/1da4cb5d-2fd6-4533-bbd2-3afc45c2c2ec</string>
+    <string name="TTS_url">https://api.eu-gb.text-to-speech.watson.cloud.ibm.com/instances/d9268f2e-ff6c-43ab-8af7-a7c92315ef0e</string>
 
 </resources>
