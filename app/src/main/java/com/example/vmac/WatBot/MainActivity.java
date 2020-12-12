@@ -17,6 +17,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -46,6 +47,7 @@ import com.ibm.watson.speech_to_text.v1.websocket.BaseRecognizeCallback;
 import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
 
+import android.content.Intent;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -169,15 +171,48 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
-        case R.id.refresh:
-            finish();
-            startActivity(getIntent());
-
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.chatbot:
+                if (this.getClass().getSimpleName().equals("MainActivity")){
+                    Toast.makeText(this, "Jesteś już w chatbocie!", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                else {
+                    Intent launchNewIntent = new Intent(this, MainActivity.class);
+                    startActivityForResult(launchNewIntent, 0);
+                    finish();
+                    return true;
+                }
+            case R.id.statistics:
+                if (this.getClass().getSimpleName().equals("Statistics")){
+                    Toast.makeText(this, "Jesteś już w statystykach!", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                else {
+                    Intent launchNewIntent = new Intent(this, Statistics.class);
+                    startActivityForResult(launchNewIntent, 0);
+                    finish();
+                    return true;
+                }
+            case R.id.charts:
+                if (this.getClass().getSimpleName().equals("Charts")){
+                    Toast.makeText(this, "Jesteś już w wizualizacji!", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                else {
+                    Intent launchNewIntent = new Intent(this, Charts.class);
+                    startActivityForResult(launchNewIntent, 0);
+                    finish();
+                    return true;
+                }
+            case R.id.refresh:
+                finish();
+                startActivity(getIntent());
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
-        return(super.onOptionsItemSelected(item));
-    }
-
 
     // Speech-to-Text Record Audio permission
     @Override
@@ -215,7 +250,6 @@ public class MainActivity extends AppCompatActivity {
                 new String[]{Manifest.permission.RECORD_AUDIO},
                 MicrophoneHelper.REQUEST_PERMISSION);
     }
-
 
     // Sending a message to Watson Assistant Service
     private void sendMessage() {
@@ -325,7 +359,6 @@ public class MainActivity extends AppCompatActivity {
 
                         thread.start();
                     }
-
 
     //Record a message via Watson Speech to Text
     private void recordMessage() {
@@ -454,7 +487,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
 }
 

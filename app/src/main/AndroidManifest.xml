@@ -19,9 +19,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Charts"></activity>
+        <activity android:name=".Statistics" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
@@ -32,11 +34,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <provider android:name="android.support.v4.content.FileProvider"
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.com.ibm.watson.developer_cloud.android.provider"
             android:exported="false"
-            tools:replace="android:authorities">
-        </provider>
+            tools:replace="android:authorities" />
     </application>
 
 </manifest>
