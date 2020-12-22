@@ -3,14 +3,14 @@ package com.example.vmac.WatBot;
 public class Stats {
 
     private String date;
-    private String cases;
-    private String deaths;
+    private int cases;
+    private int deaths;
     private String pupulation;
-    private String cumulativeNr;
+    private int cumulativeNr;
     private boolean expanded;
 
 
-    public Stats(String date, String cases, String deaths, String pupulation, String cumulativeNr) {
+    public Stats(String date, int cases, int deaths, String pupulation, int cumulativeNr) {
         this.date = date;
         this.cases = cases;
         this.deaths = deaths;
@@ -19,7 +19,7 @@ public class Stats {
         this.expanded = false;
     }
 
-    public Stats(String date, String cases, String deaths, String cumulativeNr) {
+    public Stats(String date, int cases, int deaths, int cumulativeNr) {
         this.date = date;
         this.cases = cases;
         this.deaths = deaths;
@@ -35,19 +35,19 @@ public class Stats {
         this.date = date;
     }
 
-    public String getCases() {
+    public int getCases() {
         return cases;
     }
 
-    public void setCases(String cases) {
+    public void setCases(int cases) {
         this.cases = cases;
     }
 
-    public String getDeaths() {
+    public int getDeaths() {
         return deaths;
     }
 
-    public void setDeaths(String deaths) {
+    public void setDeaths(int deaths) {
         this.deaths = deaths;
     }
 
@@ -59,11 +59,11 @@ public class Stats {
         this.pupulation = pupulation;
     }
 
-    public String getCumulativeNr() {
+    public int getCumulativeNr() {
         return cumulativeNr;
     }
 
-    public void setCumulativeNr(String cumulativeNr) {
+    public void setCumulativeNr(int cumulativeNr) {
         this.cumulativeNr = cumulativeNr;
     }
 

@@ -1,29 +1,38 @@
 package com.example.vmac.WatBot;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Statistics extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    List<Stats> statsList;
+    private String TAG = Statistics.class.getSimpleName();
+    private RecyclerView recyclerView;
+    private List<Stats> statsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+        statsList = new ArrayList<>();
+        new GetData().execute();
 
-        initData();
-        initRecyclerActivity();
     }
 
     @Override
@@ -77,42 +86,86 @@ public class Statistics extends AppCompatActivity {
         }
     }
 
-    private void initRecyclerActivity(){
+    private void initRecycler(){
         recyclerView = findViewById(R.id.statistics_recycler);
         StatisticsAdapter activityAdapter = new StatisticsAdapter(statsList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(activityAdapter);
     }
 
-    private void initData(){
-        statsList = new ArrayList<>();
-        statsList.add(new Stats("12.12.2020",
-                "14 123",
-                "542",
-                "421"));
-        statsList.add(new Stats("11.12.2020",
-                "14 123",
-                "542",
-                "421"));
-        statsList.add(new Stats("10.12.2020",
-                "14 123",
-                "542",
-                "421"));
-        statsList.add(new Stats("09.12.2020",
-                "14 123",
-                "542",
-                "421"));
-        statsList.add(new Stats("08.12.2020",
-                "14 123",
-                "542",
-                "421"));
-        statsList.add(new Stats("07.12.2020",
-                "14 123",
-                "542",
-                "421"));
-        statsList.add(new Stats("06.12.2020",
-                "14 123",
-                "542",
-                "421"));
+    private class GetData extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(Statistics.this,"Pobieram dane z bazy :)",Toast.LENGTH_LONG).show();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            HttpHandler sh = new HttpHandler();
+            // Making a request to url and getting response
+            String url = "https://covid-19-chatbot-server.herokuapp.com/stats";
+            String jsonStr = sh.makeServiceCall(url);
+            initNewsData(jsonStr);
+            return  null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            initRecycler();
+
+        }
+
+        protected void initNewsData(String jsonStr){
+            Log.e(TAG, "Response from url: " + jsonStr);
+            if (jsonStr != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(jsonStr);
+
+                    // Getting JSON Array node
+                    JSONArray jsonArray = jsonObj.getJSONArray(null);
+
+                    // looping through All Contacts
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject c = jsonArray.getJSONObject(i);
+                        Stats stat = new Stats(
+                                c.getString("date"),
+                                c.getInt("cases"),
+                                c.getInt("deaths"),
+                                c.getInt("cumulative_nr")
+
+                        );
+                        statsList.add(stat);
+
+                    }
+                } catch (final JSONException e) {
+                    Log.e(TAG, "Json parsing error: " + e.getMessage());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(),
+                                    "Json parsing error: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+            } else {
+                Log.e(TAG, "Couldn't get json from server.");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(),
+                                "Couldn't get json from server. Check LogCat for possible errors!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }
     }
 }
+
+
