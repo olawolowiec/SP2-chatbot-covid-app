@@ -125,7 +125,7 @@ public class Statistics extends AppCompatActivity {
                     JSONObject jsonObj = new JSONObject(jsonStr);
 
                     // Getting JSON Array node
-                    JSONArray jsonArray = jsonObj.getJSONArray(null);
+                    JSONArray jsonArray = jsonObj.getJSONArray("stats");
 
                     // looping through All Contacts
                     for (int i = 0; i < jsonArray.length(); i++) {

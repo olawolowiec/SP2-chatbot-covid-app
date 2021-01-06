@@ -5,12 +5,12 @@ public class Stats {
     private String date;
     private int cases;
     private int deaths;
-    private String pupulation;
+    private int pupulation;
     private int cumulativeNr;
     private boolean expanded;
 
 
-    public Stats(String date, int cases, int deaths, String pupulation, int cumulativeNr) {
+    public Stats(String date, int cases, int deaths, int pupulation, int cumulativeNr) {
         this.date = date;
         this.cases = cases;
         this.deaths = deaths;
@@ -51,11 +51,11 @@ public class Stats {
         this.deaths = deaths;
     }
 
-    public String getPupulation() {
+    public int getPupulation() {
         return pupulation;
     }
 
-    public void setPupulation(String pupulation) {
+    public void setPupulation(int pupulation) {
         this.pupulation = pupulation;
     }
 

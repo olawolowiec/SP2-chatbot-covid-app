@@ -15,6 +15,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
 
     List<Stats> statsList;
     Context context;
+    int t1,t2,t3;
 
     public StatisticsAdapter(List<Stats> personList, Context context) {
         this.statsList = personList;
@@ -32,10 +33,10 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
     public void onBindViewHolder(@NonNull StatisticsAdapter.StatisticsHolder statisticsHolder, int i) {
 
         Stats stats = statsList.get(i);
-        statisticsHolder.dateTextView.setText(stats.getDate());
-        statisticsHolder.casesTextView.setText("W tym dniu " + stats.getCases() + " osób zostało zdiagnozowanych z wynikiem  pozytywnym Sars-Cov2");
-        statisticsHolder.deathsTextView.setText("Z powodu koronawirusa oraz chorób współistniejących zmarło " + stats.getDeaths() + " osób.");
-        statisticsHolder.cumulativeTextView.setText(stats.getCumulativeNr());
+        statisticsHolder.dateTextView.setText(stats.getDate().substring(0,11));
+        statisticsHolder.casesTextView.setText("W tym dniu " + String.valueOf(stats.getCases()) + "  zostało zdiagnozowanych z wynikiem  pozytywnym Sars-Cov2");
+        statisticsHolder.deathsTextView.setText("Z powodu koronawirusa oraz chorób współistniejących zmarło " + String.valueOf(stats.getDeaths()) + " osób.");
+        statisticsHolder.cumulativeTextView.setText(String.valueOf(stats.getCumulativeNr()));
 
         boolean isExpanded = statsList.get(i).isExpanded();
         statisticsHolder.statisticsDetailLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
