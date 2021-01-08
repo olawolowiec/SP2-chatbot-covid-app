@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
     this.initialRequest = true;
 
 
+
     int permission = ContextCompat.checkSelfPermission(this,
       Manifest.permission.RECORD_AUDIO);
 

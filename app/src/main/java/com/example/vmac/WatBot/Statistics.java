@@ -97,7 +97,7 @@ public class Statistics extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(Statistics.this,"Pobieram dane z bazy :)",Toast.LENGTH_LONG).show();
+            Toast.makeText(Statistics.this,"Pobieram dane z bazy. Może to chwilę potrwać.",Toast.LENGTH_LONG).show();
 
         }
 

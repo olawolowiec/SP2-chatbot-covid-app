@@ -94,7 +94,7 @@ public class Charts extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(Charts.this,"Pobieram dane z bazy :)",Toast.LENGTH_LONG).show();
+            Toast.makeText(Charts.this,"Pobieram dane z bazy. Może to chwilę potrwać.",Toast.LENGTH_LONG).show();
 
         }
 
