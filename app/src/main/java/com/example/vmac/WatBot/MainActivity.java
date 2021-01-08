@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view, final int position) {
                 Message audioMessage = (Message) messageArrayList.get(position);
                 if (audioMessage != null && !audioMessage.getMessage().isEmpty()) {
-                    new SayTask().execute(audioMessage.getMessage());
+                    //new SayTask().execute(audioMessage.getMessage());
                 }
             }
 
@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
                                                     messageArrayList.add(outMessage);
 
                                                     // speak the message
-                                                    new SayTask().execute(outMessage.getMessage());
+                                                   // new SayTask().execute(outMessage.getMessage());
                                                     break;
 
                                                 case "option":
@@ -325,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
                                                     messageArrayList.add(outMessage);
 
                                                     // speak the message
-                                                    new SayTask().execute(outMessage.getMessage());
+                                                    //new SayTask().execute(outMessage.getMessage());
                                                     break;
 
                                                 case "image":
@@ -333,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
                                                     messageArrayList.add(outMessage);
 
                                                     // speak the description
-                                                    new SayTask().execute("You received an image: " + outMessage.getTitle() + outMessage.getDescription());
+                                                    //new SayTask().execute("You received an image: " + outMessage.getTitle() + outMessage.getDescription());
                                                     break;
                                                 default:
                                                     Log.e("Error", "Unhandled message type");
@@ -453,17 +453,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private class SayTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... params) {
-            streamPlayer.playStream(textToSpeech.synthesize(new SynthesizeOptions.Builder()
-                    .text(params[0])
-                    .voice(SynthesizeOptions.Voice.EN_US_LISAVOICE)
-                    .accept(HttpMediaType.AUDIO_WAV)
-                    .build()).execute().getResult());
-            return "Did synthesize";
-        }
-    }
+//    private class SayTask extends AsyncTask<String, Void, String> {
+//        @Override
+//        protected String doInBackground(String... params) {
+//            streamPlayer.playStream(textToSpeech.synthesize(new SynthesizeOptions.Builder()
+//                    .text(params[0])
+//                    .voice(SynthesizeOptions.Voice.EN_US_LISAVOICE)
+//                    .accept(HttpMediaType.AUDIO_WAV)
+//                    .build()).execute().getResult());
+//            return "Did synthesize";
+//        }
+//    }
 
     //Watson Speech to Text Methods.
     private class MicrophoneRecognizeDelegate extends BaseRecognizeCallback {
